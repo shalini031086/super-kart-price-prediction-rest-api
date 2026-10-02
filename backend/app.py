@@ -85,5 +85,8 @@ def predict_super_kart_batch():
 
 # Run the Flask application in debug mode if this script is executed directly
 if __name__ == '__main__':
-    super_kart_predictor_api.run(debug=True)
+    super_kart_predictor_api.run(
+        host="0.0.0.0",
+        port=7860,
+        debug=True
     )
