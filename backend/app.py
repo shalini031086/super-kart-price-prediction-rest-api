@@ -32,16 +32,16 @@ def predict_super_kart_price():
 
     # Extract relevant features from the JSON data
     sample = {
-        'Product_Weight': superkart_data['Product_Weight'],
-        'Product_Sugar_Content': superkart_data['Product_Sugar_Content'],
-        'Product_Allocated_Area': superkart_data['Product_Allocated_Area'],
-        'Product_Type_Category':	superkart_data['Product_Type_Category'],
-        'Product_MRP': superkart_data['Product_MRP'],
-        'Store_Size': superkart_data['Store_Size'],
-        'Store_Location_City_Type': superkart_data['Store_Location_City_Type'],
-        'Store_Type': superkart_data['Store_Type'],
-        'Product_Id_char': superkart_data['Product_Id_char'],
-        'Store_Age_Years': superkart_data['Store_Age_Years']
+        'Product_Weight': property_data['Product_Weight'],
+        'Product_Sugar_Content': property_data['Product_Sugar_Content'],
+        'Product_Allocated_Area': property_data['Product_Allocated_Area'],
+        'Product_Type_Category':	property_data['Product_Type_Category'],
+        'Product_MRP': property_data['Product_MRP'],
+        'Store_Size': property_data['Store_Size'],
+        'Store_Location_City_Type': property_data['Store_Location_City_Type'],
+        'Store_Type': property_data['Store_Type'],
+        'Product_Id_char': property_data['Product_Id_char'],
+        'Store_Age_Years': property_data['Store_Age_Years']
         }
 
     # Convert the extracted data into a Pandas DataFrame
@@ -77,8 +77,8 @@ def predict_super_kart_batch():
     predicted_price = model.predict(input_data).tolist()
 
         # Create a dictionary of predictions with property IDs as keys
-    superkart_ids = input_data['id'].tolist()  # Assuming 'id' is the property ID column
-    output_dict = dict(zip(superkart_ids, predicted_price))  # Use actual prices
+    property_ids = input_data['id'].tolist()  # Assuming 'id' is the property ID column
+    output_dict = dict(zip(property_ids, predicted_price))  # Use actual prices
 
     # Return the predictions dictionary as a JSON response
     return output_dict
@@ -86,3 +86,4 @@ def predict_super_kart_batch():
 # Run the Flask application in debug mode if this script is executed directly
 if __name__ == '__main__':
     super_kart_predictor_api.run(debug=True)
+    )
