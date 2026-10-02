@@ -72,16 +72,14 @@ def predict_super_kart_batch():
 
     # Read the CSV file into a Pandas DataFrame
     input_data = pd.read_csv(file)
+    
 
     # Make predictions for all properties in the DataFrame (get log_prices)
     predicted_price = model.predict(input_data).tolist()
-
-        # Create a dictionary of predictions with property IDs as keys
-    property_ids = input_data['id'].tolist()  # Assuming 'id' is the property ID column
-    output_dict = dict(zip(property_ids, predicted_price))  # Use actual prices
-
-    # Return the predictions dictionary as a JSON response
-    return output_dict
+    
+    return jsonify({
+"predictions": predicted_price
+}) 
 
 # Run the Flask application in debug mode if this script is executed directly
 if __name__ == '__main__':
